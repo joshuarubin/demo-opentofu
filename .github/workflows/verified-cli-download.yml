@@ -1,0 +1,25 @@
+name: Verify fork CLI download
+on:
+  push:
+    branches: [test/verified-cli-download]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+      - uses: joshuarubin/digger@8118c0697582541738359caed02a2fe171111c13
+        with:
+          digger-version: v0.6.150
+          setup-opentofu: true
+          opentofu-version: v1.8.5
+          no-backend: true
+          disable-locking: true
+          mode: manual
+          command: digger plan
+          project: smoke
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+          GITHUB_TOKEN: ${{ github.token }}

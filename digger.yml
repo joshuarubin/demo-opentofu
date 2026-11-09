@@ -1,13 +1,7 @@
-auto_merge: true
-auto_merge_strategy: "merge"
-
+pr_locks: false
 reporting:
-  comments_enabled: true
-
+  comments_enabled: false
 projects:
-  - name: dev
-    dir: dev/
-    opentofu: true
-  - name: prod
-    dir: prod/
+  - name: smoke
+    dir: smoke/
     opentofu: true
